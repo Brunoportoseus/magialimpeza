@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartão de Visitas - Magia Limpeza e Conservação</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e8edf5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      color: #0D47A1;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── FRENTE ─────────────────────────────────────────── */
+    .card {
+      width: 350px;
+      height: 200px;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(13, 71, 161, 0.25), 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #1976D2 100%);
+    }
+
+    /* decorative circles */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+      top: -60px;
+      right: -60px;
+    }
+    .card-front::after {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      bottom: -50px;
+      left: -40px;
+    }
+
+    .card-front-inner {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 28px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-area img {
+      height: 52px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text .nome {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text .sub {
+      font-size: 9.5px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .tagline {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #4FC3F7;
+      border-radius: 2px;
+      margin-bottom: 4px;
+    }
+
+    .contact-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .contact-item svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    .badge-curitiba {
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* ── VERSO ──────────────────────────────────────────── */
+    .card-back {
+      background: #fff;
+    }
+
+    .card-back-inner {
+      height: 100%;
+      display: flex;
+    }
+
+    .back-left {
+      width: 38%;
+      background: linear-gradient(180deg, #1565C0 0%, #0D47A1 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 20px 14px;
+      position: relative;
+    }
+
+    .back-left::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 15%;
+      height: 70%;
+      width: 3px;
+      background: #4FC3F7;
+      border-radius: 2px;
+    }
+
+    .back-logo {
+      height: 48px;
+      width: auto;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+    }
+
+    .back-cnpj {
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+
+    .back-right {
+      flex: 1;
+      padding: 20px 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .services-title {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #0D47A1;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 10px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      color: #374151;
+    }
+
+    .service-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #4FC3F7;
+      flex-shrink: 0;
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-top: 2px;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .whatsapp-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    @media print {
+      body { background: white; padding: 10mm; }
+      .card { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRENTE -->
+  <div class="card-wrapper">
+    <h2>Frente</h2>
+    <div class="card card-front">
+      <div class="card-front-inner">
+
+        <div class="logo-area">
+          <img src="logo2.png" alt="Logo Magia Limpeza">
+          <div class="logo-text">
+            <span class="nome">Magia Limpeza</span>
+            <span class="sub">e Conservação</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="divider"></div>
+          <div class="tagline">Soluções profissionais em limpeza e conservação de ambientes</div>
+        </div>
+
+        <div class="contact-bottom">
+          <div class="contact-info">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              (41) 8816-9249
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              smm.muniz@gmail.com
+            </div>
+          </div>
+          <div class="badge-curitiba">
+            Curitiba<br>Paraná — Brasil
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSO -->
+  <div class="card-wrapper">
+    <h2>Verso</h2>
+    <div class="card card-back">
+      <div class="card-back-inner">
+
+        <div class="back-left">
+          <img class="back-logo" src="logo2.png" alt="Logo">
+          <div class="back-cnpj">
+            CNPJ<br>60.704.627/0001-55
+          </div>
+        </div>
+
+        <div class="back-right">
+          <div class="services-title">Nossos Serviços</div>
+          <div class="services-grid">
+            <div class="service-item"><div class="service-dot"></div>Residencial</div>
+            <div class="service-item"><div class="service-dot"></div>Comercial</div>
+            <div class="service-item"><div class="service-dot"></div>Pós-Obra</div>
+            <div class="service-item"><div class="service-dot"></div>Escritórios</div>
+            <div class="service-item"><div class="service-dot"></div>Condomínios</div>
+            <div class="service-item"><div class="service-dot"></div>Higienização</div>
+            <div class="service-item"><div class="service-dot"></div>Conservação</div>
+            <div class="service-item"><div class="service-dot"></div>Sob Demanda</div>
+          </div>
+          <a class="whatsapp-btn" href="https://wa.me/554188169249">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.118 1.529 5.847L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374A9.861 9.861 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/>
+            </svg>
+            Fale pelo WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
